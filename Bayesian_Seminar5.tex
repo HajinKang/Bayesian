@@ -1,0 +1,378 @@
+\documentclass[9pt]{beamer}  % \documentclass[9pt]{beamer}
+
+\usetheme{CambridgeUS} %  CambridgeUS, Madrid, Boadilla, default, Warsaw, Bergen, Frankfurt
+\usecolortheme{dolphin} %  albatross beaver beetle crane default dolphin dove fly lily orchid rose seagull seahorse whale wolverine 
+  
+\useoutertheme[subsection=false]{miniframes}  % Used from candidacy exam
+%footline=empty, footline=authorinstitute, footline=authortitle, footline=institutetitle, footline=authorinstitutetitle
+
+% Table of contents numbering style
+\setbeamerfont{section number projected}{family=\rmfamily,series=\bfseries,size=\normalsize}
+\setbeamercolor{section number projected}{bg=white,fg=black}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% Used formats
+%%%%
+%%%% JSM 2014, Boston : CambridgeUS 	beaver 9pt,  15 pages
+%\setbeamertemplate{footline}[authorinstitutetitle]
+% \setbeamertemplate{footline}[page number] %  if you want page numbers and using Warsaw theme%
+
+ \setbeamertemplate{caption}[numbered]
+%\setbeamercovered{transparent}
+% \setbeamercovered{invisible}
+\setbeamertemplate{navigation symbols}{}   % To remove the navigation symbols from the bottom of slides%
+
+%% page number, author and institute in footline
+\defbeamertemplate{footline}{authorinstitute and page number}{%
+\usebeamercolor[fg]{page number in head/foot}%
+\usebeamerfont{page number in head/foot}%
+\hspace{1em}\insertshortauthor \hspace{0.1em} (\insertshortinstitute)\hfill%
+\insertpagenumber\,/\,\insertpresentationendpage\kern1em\vskip2pt%
+}
+\setbeamertemplate{footline}[authorinstitute and page number]{}
+
+%%%%  Package
+
+\usepackage{amsthm,amsfonts,amssymb,amsbsy,amsmath}
+\usepackage{graphicx, graphics}
+% \usepackage{bm}         % For typesetting bold math (not \mathbold)
+\usepackage{color}
+%\usepackage{floatflt}
+\usepackage{wrapfig} 
+\usepackage{enumerate}
+\usepackage{multimedia}
+%\usepackage{animate}
+\usepackage{multirow}
+\usepackage{kotex}
+\usepackage{subfigure}
+%%%%  Logo
+
+\logo{\includegraphics[height=1cm]{UploadFiles/cau_logo.png}}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Define colors
+   \definecolor{Majorelleblue}{rgb}{0.38,0.31,0.86} % Definition of color
+   \definecolor{Beaverblue}{rgb}{0.2,0.2,0.7}
+    
+	% Inner block 
+			\setbeamercolor{block title}{fg=Majorelleblue,bg=Majorelleblue}
+			\setbeamercolor{block title alerted}{use=alerted text,fg=red, bg=alerted text.fg!75!bg}
+			\setbeamercolor{block title example}{use=example text,fg=red, bg=example text.fg!75!bg}
+%			\setbeamercolor{block body}{parent=normal, textfg=red,use=block title,bg=block title.bg!25!bg}
+			\setbeamercolor{block body alerted}
+							{parent=normal text,fg=red,use=block title alerted,bg=block title alerted.bg!25!bg}
+			\setbeamercolor{block body example}
+							{parent=normal text,fg=red,use=block title example,bg=block title example.bg!25!bg}
+	%		\setbeamercolor{button border}{use=button,fg=yellow,bg=red,textfg=blue,,textbg=green}
+
+\addtobeamertemplate{block begin}{%
+  \setlength{\textwidth}{0.9\textwidth}%
+}{}
+
+\addtobeamertemplate{block alerted begin}{%
+  \setlength{\textwidth}{0.9\textwidth}%
+}{}
+
+\addtobeamertemplate{block example begin}{%
+  \setlength{\textwidth}{0.9\textwidth}%
+}{}
+
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%New command
+	\newcommand{\bm}[1]{\mbox{\boldmath{$#1$}}}
+	\newcommand{\bms}{\mbox{\boldmath{$s$}}}
+
+	\newcommand{\bluedot}{\textcolor{Beaverblue}{$\cdot \ $}}
+	\newcommand{\bluetri}{\textcolor{Beaverblue}{$\blacktriangleright \ $}}
+	\newcommand{\bluedash}{\textcolor{Beaverblue}{-}}
+	\newcommand{\bluecircle}{\textcolor{Beaverblue}{$\circ \ $}}	
+	\renewcommand{\footnotesize}{\scriptsize}
+%	\renewcommand{\arraystretch}{2}
+%	\newcommand{\reddot}{\textcolor{Majorelleblue}{$\cdot \ $}}
+%	\newcommand{\redtri}{\textcolor{Majorelleblue}{$\blacktriangleright \ $}}
+%	\newcommand{\reddash}{\textcolor{Majorelleblue}{- \ }}	
+%	\newcommand{\redcircle}{\textcolor{Majorelleblue}{$\circ \ $}}	
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title[]{\huge Bayesian measures of model complexity and ﬁt\\  (Section 7 : A model comparison criterion)}
+
+%\subtitle{\textcolor{black}{Candidacy Examination}}
+
+\author[Bayesian Seminar \#5]{}
+
+\institute[HJKang, Section 7]{\Large by David J.Spiegelhalter/Nicola G.Best/Bradley P.Carlin\\ and Angelika van der Linde}
+
+\date{February 19th (Wed), 2020} % \today will show current date.  % Alternatively, you can specify a date.
+
+% Delete this, if you do not want the table of contents to pop up at
+% the beginning of each subsection:
+% \AtBeginSubsection[]
+% {
+%  \begin{frame}{Outline}
+%    \tableofcontents[currentsection,currentsubsection]
+%  \end{frame}
+% }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+%%%%%%%%%
+\begin{frame}
+\titlepage
+\end{frame}
+
+%%%%%%%%%
+%\begin{frame}
+%   \frametitle{Outline}
+%   \tableofcontents % [currentsection,currentsubsection]
+%\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+\section[Intro]{Intro}
+\subsection*{Intro}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Outline}
+
+\begin{itemize}
+   \item[\bluetri] Contents of this paper (Section 1 $\sim$ 9)
+   \vspace{0.2cm}
+   \item[\bluetri] Section 7. A model comparison criterion
+    \item[] \hspace{1.23cm} 7.1 Model selection
+   \item[] \hspace{1.23cm} 7.2 Classical criteria for model comparison
+    \item[] \hspace{1.23cm} 7.3 Bayesian criteria for model comparison
+\end{itemize}
+  \vspace{1cm}
+
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+\section[Model selection]{Model selection}
+\subsection*{Model selection}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[t]
+\frametitle{Model comparison: the problem}
+
+\begin{itemize}
+   \item[\bluetri] Concept
+    \item[]\bluecircle $Y_{rep}$ = independent replicate data set
+    \item[]\bluecircle $\mathcal{L}(Y,\tilde{\theta})$ = loss in assigning to data Y a probability $p(Y|\tilde{\theta})$
+    \item[]\bluecircle $\mathcal{L}(y,\tilde{\theta}(y))$ = 'apparent' loss repredicting the observed $y$
+   \vspace{0.2cm}
+   \item[\bluetri] $E_{Y_{rep}|\theta^t}[\mathcal{L}\{y,\tilde{\theta}(y)\}] = \mathcal{L}\{y,\tilde{\theta}(y)\}+c_{\Theta}\{y,\theta^t,\tilde{\theta}(y)\}$
+    \item[] \hspace{0.1cm} where $c_{\Theta}$ is the 'optimism' associated with the estimator $\tilde{\theta}(y)$ (Efron, 1986)
+    \vspace{0.2cm}
+   \item[\bluetri] Assuming $\mathcal{L}(Y,\tilde{\theta}) = -2\log\{p(Y|\tilde{\theta})\}$, to estimate $c_{\Theta}$:
+    \vspace{0.2cm}
+    \begin{enumerate}
+        \item \underline{Classical approach}: attempts to estimate the sampling expectation of $c_{\Theta}$
+        \vspace{0.2cm}
+        \item \underline{Bayesian approach}: direct calculation of the posterior expectation of $c_{\Theta}$
+    \end{enumerate}    
+\end{itemize}
+  \vspace{1cm}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+\section[Classical criteria for model comparison]{Classical criteria for model comparison}
+\subsection*{Classical criteria for model comparison}
+
+%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Classical criteria for model comparison}
+
+
+\begin{itemize}
+    \item[\bluetri] Expected optimism: $\pi(\theta^t) = E_{Y|\theta^t}[c_{\Theta}\{Y,\theta^t,\tilde{\theta}(Y)\}]$
+    \vspace{0.2cm} 
+    \item[\bluetri] All criteria for models comparison based on minimizing $$\hat{E}_{Y_{rep}|\theta^t}[\mathcal{L}\{Y_{rep},\tilde{\theta}(y)\}] = \mathcal{L}\{y, \tilde{\theta}(y)\} + \hat{\pi}(\theta^t)$$
+    \vspace{0.2cm} 
+    \item[\bluetri] Efron (1986) $\pi(\theta^t)$ for the log-loss function: $\pi_E(\theta^t) \approx 2p$
+    \vspace{0.2cm} 
+    \item[\bluetri] Considered as corresponding to a plug-in estimate of fit + twice the effective number of parameters in the model
+\end{itemize}
+
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+\section[Bayesian criteria for model comparison]{Bayesian criteria for model comparison}
+\subsection*{Bayesian criteria for model comparison}
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Bayesian criteria for model comparison}
+
+\begin{itemize}
+    \item[\bluetri] \textcolor{red}{\bf{AIME}}: identify models that best explain the observed data \\ {\bf but} \\ with the expectation that they minimize uncertainty about observations generated in the same way
+\end{itemize}
+
+
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Deviance information criterion (DIC)}
+
+
+\begin{block}{\textcolor{white}{Definition}}
+    \begin{eqnarray}
+        DIC & = & D(\bar{\theta}) + 2p_D \nonumber\\
+            & = & \bar{D} + p_D \nonumber
+    \end{eqnarray}
+\end{block}
+
+
+\begin{itemize}
+    \item[\bluetri] Classical estimate of fit + twice the effective number of parameters
+    \vspace{0.2cm}
+    \item[\bluetri] Also a Bayesian measure of fit, penalized by complexity $p_D$
+\end{itemize}
+
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{DIC and AIC}
+
+\begin{itemize}
+    \item[\bluetri] Akaike information criterion \\ $\Longrightarrow AIC = 2p - 2\log\{p(y|\hat{\theta})\}$ \\ $\hat{\theta} = MLE$
+    \vspace{0.2cm}
+    \item[\bluetri] From result Section 3.2: $p_D \approx p$ in models with negligible prior information \\ $\Longrightarrow DIC \approx 2p + D(\bar{\theta})$
+\end{itemize}
+
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]
+\frametitle{An approximate decision theory for DIC}
+
+\begin{itemize}
+    \item[\bluetri] $c_{\Theta}\{y, \theta^t, \tilde{\theta}(y)\} = E_{Y_{rep}|\theta^t}\{D_{rep}(\tilde{\theta})\} - D(\tilde{\theta})$ \\ where $-2\log[p\{Y_{rep}|\tilde{\theta}(y)\}]$ is denoted $ D_{rep}(\tilde{\theta})$
+    \vspace{0.2cm}
+    \item[\bluetri] $c_{\Theta} = E_{Y_{rep}|\theta^t}\{D_{rep}(\tilde{\theta})-D_{rep}(\theta^t)\} + E_{Y_{rep}|\theta^t}\{D_{rep}(\theta^t)-D(\theta^t)\} + \{D(\theta^t)-D(\tilde{\theta})\}$
+    \vspace{0.2cm}
+    \item[\bluetri] $\mathcal{L}_1(\theta,\tilde{\theta}) \approx E_{Y_{rep}|\theta}\{-2(\tilde{\theta}-\theta)^TL'_{rep,\theta}-(\tilde{\theta}-\theta)^TL''_{rep,\theta}(\tilde{\theta}-\theta)\}$ \\ where $L_{rep,\theta} = \log\{p(Y_{rep}|\theta)\}$
+    \vspace{0.2cm}
+    \item[\bluetri] Since $E_{Y_{rep}|\theta}(L'_{rep,\theta}) = 0$ \\
+    $\mathcal{L}_1(\theta,\tilde{\theta}) \approx tr\{I_{\theta}(\tilde{\theta}-\theta)(\tilde{\theta}-\theta)^T\}$ \\ where $I_{\theta} = E_{Y_{rep}|\theta}(-L''_{rep,\theta})$ is the assumed Fisher information in $Y_{rep}$
+    \vspace{0.2cm}
+    \item[\bluetri] by the good model assumption (Section 2.2), \\
+    $\mathcal{L}_1(\theta,\tilde{\theta}) \approx tr\{-L''_{\tilde{\theta}}(\tilde{\theta}-\theta)(\tilde{\theta}-\theta)^T\}$
+    \vspace{0.2cm}
+    \item[\bluetri] $E_{\theta|y}(c_{\Theta}) \approx tr[-L''_{\tilde{\theta}}E_{\theta|y}\{(\theta-\tilde{\theta})(\theta-\tilde{\theta})^T\}] + E_{\theta|y}\{\mathcal{L}_2(y,\theta)\} + E_{\theta|y}\{D(\theta)-D(\tilde{\theta})\}$
+\end{itemize}
+
+
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]
+\frametitle{An approximate decision theory for DIC}
+
+\begin{itemize}
+    \item[\bluetri] Using the posterior mean $\bar{\theta}$ \\ $E_{\theta|y}(c_{\Theta}) \approx tr(-L''_{\bar{\theta}}V) + E_{\theta|y}\{\mathcal{L}_2(y,\theta)\} + p_D$ \\
+    where $V$ is defined as the posterior covariance of $\theta$, and $p_D = \bar{D} - D(\bar{\theta})$  
+    \vspace{0.2cm}
+    \item[\bluetri] $\mathcal{L}_2(y,\theta) = E_{Y_{rep}|\theta}[-2\log\{p(Y_{rep}|\theta)\}] + 2\log\{p(y|\theta)\}$ \\ and so $E_Y[E_{\theta|Y}\{\mathcal{L}_2(Y,\theta)\}] = E_{\theta}[E_{Y|\theta}\{\mathcal{L}_2(Y,\theta)\}]=0$
+    \vspace{0.2cm}
+    \item[\bluetri] We have already shown that $p_D \approx tr(-L''_{\bar{\theta}}V)$ \\ the expected posterior loss is $D(\bar{\theta})+E_{\theta|y}(c_{\Theta}) \approx D(\bar{\theta}) + 2p_D = DIC$ \\
+    neglecting a term $E_{\theta|y}\{\mathcal{L}_2(y,\theta)\}=0$
+    \vspace{0.2cm}
+    \item[\bluetri] The derivation has assumed that $D$ is an unstandardized deviance
+\end{itemize}
+
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+\section[Outro]{Outro}
+\subsection*{Outro}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[t]
+\frametitle{Finally...!}
+
+\begin{itemize}
+   \item[\bluetri] Code Link
+    \item[] \hspace{1.23cm} (\href{https://github.com/HajinKang/Bayesian/blob/master/Bayesian_Seminar5.tex}{https://github.com/HajinKang/Bayesian/blob/master/Bayesian\_Seminar5.tex})
+   \vspace{0.2cm}
+   \item[\bluetri] Let's consider online \LaTeX editor (\href {https://www.overleaf.com}{https://www.overleaf.com})
+\end{itemize}
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[width=0.25\textwidth,keepaspectratio=true]{UploadFiles/overleaf.png}
+	\end{center}
+\end{figure}
+
+\footnotetext[1]{source: \href{https://www.overleaf.com}{website of online \LaTeX editor overleaf}}
+
+  \vspace{1cm}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+%\section[]{}
+%%\subsection*{Appendix}
+%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{}
+%
+%$$ \mbox{\Huge Thank you!} $$
+%       
+%\end{frame}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%
+
+% The end of slides
+\end{document} 
